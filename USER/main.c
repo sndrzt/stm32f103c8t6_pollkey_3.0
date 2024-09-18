@@ -10,6 +10,10 @@
 #include "led.h"
 #include "key.h"
 
+void Delay2(__IO u32 nCount)
+{
+  for(; nCount != 0; nCount--);
+}
 
 int main(void)
 {
@@ -23,6 +27,9 @@ int main(void)
 	{
      GPIO_WriteBit(GPIOC, GPIO_Pin_13, (BitAction)((1-GPIO_ReadOutputDataBit(GPIOC, GPIO_Pin_13))));//LED1翻转
 	}
-
+ 	if( Key_Scan(GPIOB,GPIO_Pin_12) == KEY_ON  )	 //判断KEY2是否按下
+	{
+     GPIO_WriteBit(GPIOC, GPIO_Pin_13, (BitAction)((1-GPIO_ReadOutputDataBit(GPIOC, GPIO_Pin_13))));//LED1翻转
+	}
   }
 }
